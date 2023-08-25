@@ -1,16 +1,16 @@
 package com.jpa.db.entity.item;
 
 import com.jpa.db.entity.category.Category;
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.Inheritance;
-import jakarta.persistence.InheritanceType;
 import jakarta.persistence.ManyToMany;
-import jakarta.persistence.MappedSuperclass;
+import jakarta.persistence.OneToOne;
 import java.util.ArrayList;
+import java.util.IdentityHashMap;
 import java.util.List;
 import lombok.AccessLevel;
 import lombok.Getter;
@@ -19,8 +19,7 @@ import lombok.NoArgsConstructor;
 @Entity
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-public abstract class Item {
+public class Item {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -35,5 +34,4 @@ public abstract class Item {
 
     @ManyToMany(mappedBy = "itemList")
     private List<Category> categoryList = new ArrayList<>();
-
 }
