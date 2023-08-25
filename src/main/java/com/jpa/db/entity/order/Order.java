@@ -43,7 +43,7 @@ public class Order {
     private OrderStatus orderStatus;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "id")
+    @JoinColumn(name = "member_id")
     private Member member;
 
     @OneToOne(mappedBy = "order", cascade = CascadeType.ALL) // 이거 어차피 eager로 날라가서 색칠되있는 것이다.

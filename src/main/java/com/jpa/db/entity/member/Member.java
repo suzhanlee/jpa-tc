@@ -35,4 +35,10 @@ public class Member {
     @OneToMany(mappedBy = "member")
     private List<Order> orderList = new ArrayList<>();
 
+    public static Member createMember(String name, Address address) {
+        Member member = new Member();
+        member.name = name;
+        member.address = address;
+        return member;
+    }
 }

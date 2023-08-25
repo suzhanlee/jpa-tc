@@ -6,6 +6,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.Inheritance;
+import jakarta.persistence.InheritanceType;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.MappedSuperclass;
 import java.util.ArrayList;
@@ -17,7 +19,7 @@ import lombok.NoArgsConstructor;
 @Entity
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-@MappedSuperclass
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 public abstract class Item {
 
     @Id

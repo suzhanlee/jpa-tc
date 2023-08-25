@@ -6,7 +6,7 @@ import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-@DiscriminatorValue("Album")
+@DiscriminatorValue("Movie")
 @Entity
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
