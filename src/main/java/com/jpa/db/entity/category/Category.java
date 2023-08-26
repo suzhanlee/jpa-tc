@@ -44,4 +44,10 @@ public class Category {
 
     @OneToMany(mappedBy = "parent")
     private List<Category> child = new ArrayList<>();
+
+    public static Category createCategory(String name) {
+        Category category = new Category();
+        category.name = name;
+        return category;
+    }
 }
