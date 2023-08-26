@@ -40,5 +40,4 @@ public class Delivery {
     private Order order;
 
 
-
 }

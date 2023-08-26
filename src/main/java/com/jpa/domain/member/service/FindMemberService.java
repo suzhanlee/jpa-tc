@@ -14,6 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
 public class FindMemberService {
 
     private final MemberRepository memberRepository;
+
     public Member findByIdOrElseThrow(Long id) {
         return memberRepository.findById(id).orElseThrow(CannotFindMemberException::new);
     }

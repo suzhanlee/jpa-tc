@@ -1,35 +1,25 @@
 package com.jpa.db.entity.item;
 
-import jakarta.persistence.Column;
+import jakarta.persistence.DiscriminatorValue;
 import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.OneToOne;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import org.hibernate.annotations.OnDelete;
-import org.hibernate.annotations.OnDeleteAction;
 
 @Entity
 @Getter
+@DiscriminatorValue("Album")
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class Album {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
-    private Long id;
+public class Album extends Item {
 
     private String artist;
 
-    private String etc;
-
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "item_id")
-    @OnDelete(action = OnDeleteAction.CASCADE)
-    private Item item;
+    public static Album createAlbum(String name, Integer stockQuantity,
+        String artist) {
+        Album album = new Album();
+        album.name = name;
+        album.stockQuantity = stockQuantity;
+        album.artist = artist;
+        return album;
+    }
 }

@@ -1,32 +1,28 @@
 package com.jpa.db.entity.item;
 
-import jakarta.persistence.Column;
+import jakarta.persistence.DiscriminatorValue;
 import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.OneToOne;
+import lombok.AccessLevel;
 import lombok.Getter;
-import org.hibernate.annotations.OnDelete;
-import org.hibernate.annotations.OnDeleteAction;
+import lombok.NoArgsConstructor;
 
 @Entity
 @Getter
-public class Book {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
-    private Long id;
+@DiscriminatorValue("Book")
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
+public class Book extends Item {
 
     private String author;
 
     private String isbn;
 
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "item_id")
-    @OnDelete(action = OnDeleteAction.CASCADE)
-    private Item item;
+    public static Book createBook(String name, Integer stockQuantity,
+        String author, String isbn) {
+        Book book = new Book();
+        book.name = name;
+        book.stockQuantity = stockQuantity;
+        book.author = author;
+        book.isbn = isbn;
+        return book;
+    }
 }
