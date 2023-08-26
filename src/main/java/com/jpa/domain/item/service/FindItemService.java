@@ -3,6 +3,7 @@ package com.jpa.domain.item.service;
 import com.jpa.db.entity.item.Item;
 import com.jpa.domain.global.exception.item.CannotFindItemException;
 import com.jpa.domain.item.repository.ItemRepository;
+import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -16,5 +17,9 @@ public class FindItemService {
 
     public Item findByIdOrElseThrow(Long id) {
         return itemRepository.findById(id).orElseThrow(CannotFindItemException::new);
+    }
+
+    public List<Item> findAllItems() {
+        return itemRepository.findAll();
     }
 }

@@ -1,5 +1,6 @@
 package com.jpa.db.entity.item;
 
+import com.jpa.domain.item.model.dto.ItemDto;
 import jakarta.persistence.DiscriminatorValue;
 import jakarta.persistence.Entity;
 import lombok.AccessLevel;
@@ -24,5 +25,13 @@ public class Book extends Item {
         book.author = author;
         book.isbn = isbn;
         return book;
+    }
+
+    public Book updateItem(ItemDto itemDto, String author, String isbn) {
+        this.name = itemDto.getName();
+        this.stockQuantity = itemDto.getStockQuantity();
+        this.author = author;
+        this.isbn = isbn;
+        return this;
     }
 }
