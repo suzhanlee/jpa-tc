@@ -8,12 +8,16 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
 import java.util.ArrayList;
 import java.util.List;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
+import org.springframework.stereotype.Service;
 
 @Entity
 @Getter
@@ -31,6 +35,9 @@ public class Member {
     @Embedded
     private Address address;
 
+    @Column
+    private int age;
+
     @OneToMany(mappedBy = "member")
     private List<Order> orderList = new ArrayList<>();
 
@@ -39,5 +46,13 @@ public class Member {
         member.name = name;
         member.address = address;
         return member;
+    }
+
+    public static Member create() {
+        return new Member();
+    }
+
+    public void setMember(String name) {
+        this.name = name;
     }
 }
